@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_enregistrer"
+        android:title="S'enregistrer"/>
+    <item
+        android:id="@+id/menu_jouer"
+        android:title="Jouer"/>
+    <item
+        android:id="@+id/menu_score"
+        android:title="Mes scores"/>
+</menu>
