@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Partiel">
-        <activity android:name=".Jouer"></activity>
+        <activity android:name=".ScoreItem"></activity>
+        <activity android:name=".Jouer" />
         <activity android:name=".ScoreList" />
         <activity android:name=".Enregistrer" />
         <activity android:name=".MainActivity">

@@ -6,11 +6,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+
+import edu.iai.partiel.models.Score;
+import edu.iai.partiel.repository.ScoreRepository;
 
 public class Jouer extends AppCompatActivity implements View.OnClickListener {
     Button btn1;
@@ -22,10 +26,12 @@ public class Jouer extends AppCompatActivity implements View.OnClickListener {
     Button btn7;
     Button btn8;
     Button btn9;
-
+    DbHelper dbHelper;
     int score;
     String ancienneValeur;
     TextView scoreView;
+
+    int counter;
 
     ArrayList choice = new ArrayList<>();
 
@@ -34,6 +40,8 @@ public class Jouer extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jouer);
 
+        counter=0;
+        dbHelper = new DbHelper(this);
         scoreView=findViewById(R.id.tviewscore);
 
         btn1=findViewById(R.id.button_1);
@@ -67,6 +75,17 @@ public class Jouer extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         Button btn = (Button) v;
         setButtonText(btn, choice);
+        counter++;
+        if(counter == 9){
+            Score scoreObj = new Score();
+            scoreObj.setDate();
+            scoreObj.setScore(String.valueOf(score));
+            ScoreRepository scoreRepository = new ScoreRepository();
+            scoreRepository.save(dbHelper.getDatabase(), scoreObj);
+            scoreRepository.save(dbHelper.getDatabase());
+            Toast.makeText(this,"Votre score est "+score,Toast.LENGTH_LONG).show();
+            finish();
+        }
 
     }
 
